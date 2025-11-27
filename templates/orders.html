@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>ניהול וקליטת תושבים</h2>
+<div class="card p-3 mb-4">
+    <h4>טעינת קובץ תושבים (Excel/CSV)</h4>
+    <p>תומך בכותרות בעברית: שם משפחה, שם פרטי, רחוב, מספר בית, טלפון וכו'.</p>
+    <form method="post" enctype="multipart/form-data">
+        <div class="mb-3">
+            <input class="form-control" type="file" name="file" required accept=".csv, .xlsx">
+        </div>
+        <button type="submit" class="btn btn-primary">טען ועבד נתונים</button>
+    </form>
+</div>
+
+<div class="row">
+    <div class="col-md-6">
+        <h5>רחובות חסרים (Missing Streets Log)</h5>
+        <table class="table table-sm table-bordered">
+            <thead><tr><th>רחוב</th><th>תאריך</th></tr></thead>
+            <tbody>
+                {% for row in missing_streets %}
+                <tr><td>{{ row['streetname'] }}</td><td>{{ row['found_at'] }}</td></tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div class="col-md-6">
+        <h5>לוג עיבוד תושבים אחרון</h5>
+        <table class="table table-sm table-striped">
+            <thead><tr><th>סטטוס</th><th>הערה</th><th>שם</th></tr></thead>
+            <tbody>
+                {% for row in archive_log %}
+                <tr>
+                    <td>{{ row['status'] }}</td>
+                    <td>{{ row['status_note'] }}</td>
+                    <td>{{ row['lastname'] }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="row text-center">
+    <div class="col-md-4">
+        <div class="card text-white bg-success mb-3">
+            <div class="card-header">משפחות רשומות</div>
+            <div class="card-body"><h1 class="card-title">{{ families }}</h1></div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card text-white bg-info mb-3">
+            <div class="card-header">סך הזמנות</div>
+            <div class="card-body"><h1 class="card-title">{{ orders }}</h1></div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card text-white bg-warning mb-3">
+            <div class="card-header">הזמנות להפצה</div>
+            <div class="card-body">
+                <h1 class="card-title">{{ pending }}</h1>
+                <a href="/orders" class="btn btn-light btn-sm">עבור להפצה</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
