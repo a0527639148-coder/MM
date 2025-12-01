@@ -21,7 +21,7 @@ def get_db_connection():
     except Exception as e:
         print(f"DB Connection Error: {e}")
         return None
-++++++ OLD
+#++++++ OLD
 #DB_URL = os.getenv("DATABASE_URL", "postgresql://postgres:password@db:5432/mishloach_db")
 #def get_db_connection():
 #    try:
