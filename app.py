@@ -9,16 +9,28 @@ from flask import Flask, render_template, request, redirect, url_for, flash, Res
 app = Flask(__name__)
 app.secret_key = 'super_secret_key_change_me'
 
-DB_URL = os.getenv("DATABASE_URL", "postgresql://postgres:password@db:5432/mishloach_db")
+DB_URL = os.getenv("DATABASE_URL")  # בלי ברירת מחדל
 
 def get_db_connection():
     try:
+        if not DB_URL:
+            raise RuntimeError("DATABASE_URL is not set")
         conn = psycopg2.connect(DB_URL)
         conn.autocommit = True
         return conn
     except Exception as e:
         print(f"DB Connection Error: {e}")
         return None
+++++++ OLD
+#DB_URL = os.getenv("DATABASE_URL", "postgresql://postgres:password@db:5432/mishloach_db")
+#def get_db_connection():
+#    try:
+ #       conn = psycopg2.connect(DB_URL)
+  #      conn.autocommit = True
+   #     return conn
+   # except Exception as e:
+   #     print(f"DB Connection Error: {e}")
+    #    return None
 
 # --- פונקציות עזר ---
 def handle_series(val):
